@@ -11,6 +11,7 @@ Full-scale procedural planet generator in Unity with lots of graphics tricks inc
 - VR support
 - Place trees on the surface, with billboarding in the distance
 - Randomly generated dungeons to place on the surface
+- Change light optical depth calculation in Scatterer.cginc to incorporate a directional light's shadow buffer
 - Better (physically based) clouds
 - Better drag/atmosphere model
 
