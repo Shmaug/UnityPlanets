@@ -78,7 +78,7 @@ public class Player : MonoBehaviour {
         if (!vehicle) {
             Vector3 delta = stiffness * (move - rbody.velocity);
 
-            if (!ScaleSpace.instance || gravity.planet) {
+            if (gravity.up != Vector3.zero) {
                 // dont apply a force upwards
                 delta -= Vector3.Project(delta, gravity.up);
                 gravity.applyGravity = true;

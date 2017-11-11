@@ -14,12 +14,14 @@ float _yOffset;
 float _DrawDistance;
 float _DistFalloff;
 
+uint _TextureCount;
+
 float4 _Wind;
 float _WindScale;
 float _WindSpeed;
 float _WindAmount;
 
-#define BLADECOUNT 20
+#define BLADECOUNT 1
 
 struct v2g {
 	float4 vertex : POSITION;
@@ -137,18 +139,23 @@ void geom(point v2g p[1], inout TriangleStream<g2f> triStream) {
 	for (uint b = 0; b < BLADECOUNT; b++) {
 		uint lookup = (b * 3 + 32 * i.tex0.x) % 32;
 		
-		float3x3 m = axisangle(normal, i.tex0.x * UNITY_PI + randomnums[lookup] * UNITY_TWO_PI);
+		float3x3 m =
+			axisangle(normalize(cross(normal, float3(0, 1, 0))), acos(normal.y))
+			* axisangle(normal, i.tex0.x * UNITY_PI + randomnums[lookup] * UNITY_TWO_PI);
 		float3 right = normalize(mul(m, float3(1, 0, 0)));
 		right *= .5f * size;
+
+		float u = floor(i.tex0.w * _TextureCount) / _TextureCount;
+		float2 uvbox = float2(u, u + 1.0 / _TextureCount);
 
 		float3 p = mul(m, normalize(float3(randomnums[(lookup + 2) % 32], randomnums[(lookup + 1) % 32], 0))) * _Spread * i.tex0.x;
 
 		float we = w - normal * abs(dot(normal, w));
 		
-		g2f v0 = setvert(i.vertex.xyz + o + p + right, normal, float4(1, 0, 0, i.tex0.y));
-		g2f v1 = setvert(i.vertex.xyz + o + p + right + up + we, normal, float4(1, 1, 0, i.tex0.y));
-		g2f v2 = setvert(i.vertex.xyz + o + p - right, normal, float4(0, 0, 0, i.tex0.y));
-		g2f v3 = setvert(i.vertex.xyz + o + p - right + up + we, normal, float4(0, 1, 0, i.tex0.y));
+		g2f v0 = setvert(i.vertex.xyz + o + p + right, normal, float4(uvbox.y, 0, 0, i.tex0.y));
+		g2f v1 = setvert(i.vertex.xyz + o + p + right + up + we, normal, float4(uvbox.y, 1, 0, i.tex0.y));
+		g2f v2 = setvert(i.vertex.xyz + o + p - right, normal, float4(uvbox.x, 0, 0, i.tex0.y));
+		g2f v3 = setvert(i.vertex.xyz + o + p - right + up + we, normal, float4(uvbox.x, 1, 0, i.tex0.y));
 
 		#ifndef SHADOWCASTER
 		v0.vlight = i.vlight;

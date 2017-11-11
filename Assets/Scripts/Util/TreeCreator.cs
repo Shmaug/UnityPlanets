@@ -274,10 +274,14 @@ public class TreeCreator : MonoBehaviour {
             Quaternion orientation = Quaternion.Lerp(branch.orientations[ji], branch.orientations[ji2], jt);
             rad = branch.radius * Mathf.Pow(1f - p, group.taperBias);
             orientation *= Quaternion.Euler(0, 0, Random.Range(-180f, 180f));
-            Vector3 normal = orientation * Vector3.up;
+            Vector3 normal = orientation * Quaternion.Euler(Random.Range(-45f, 45f), Random.Range(-45f, 45f), 0f) * Vector3.up;
 
             leaves.Add(pos + normal * rad);
             leafNormals.Add(normal);
+            // x: rotation
+            // y: color
+            // z: size
+            // w: texture
             leafuvs.Add(new Vector4(Random.value, Random.value, Random.Range(.5f, 1f) * group.leafSize, Random.value));
         }
 
@@ -379,14 +383,8 @@ public class TreeCreator : MonoBehaviour {
 
         Mesh mesh = mf.sharedMesh;
         if (!mesh) {
-            mesh = new Mesh() {
-                name = gameObject.name
-            };
+            mesh = new Mesh() { name = gameObject.name };
             mf.mesh = mesh;
-#if UNITY_EDITOR
-            if (!AssetDatabase.Contains(mesh))
-                AssetDatabase.CreateAsset(mesh, "Assets/Trees/" + gameObject.name + "Mesh.asset");
-#endif
         } else
             mesh.Clear();
 
@@ -427,9 +425,5 @@ public class TreeCreator : MonoBehaviour {
         mesh.RecalculateBounds();
 
         Random.state = initial;
-
-        #if UNITY_EDITOR
-        EditorUtility.SetDirty(mesh);
-        #endif
     }
 }

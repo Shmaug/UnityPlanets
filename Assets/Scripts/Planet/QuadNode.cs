@@ -718,7 +718,7 @@ public class QuadNode {
                         normals[(int)(x + 1) * s + (int)z],
                         normals[(int)(x + 1) * s + (int)z + 1],
                         xr, zr).normalized);
-                        guvs.Add(new Vector4((float)rand.NextDouble(), 0f, 1f, 0));
+                        guvs.Add(new Vector4((float)rand.NextDouble(), (float)rand.NextDouble(), 1f, (float)rand.NextDouble()));
                         ginds.Add(gverts.Count - 1);
                     }
                 }

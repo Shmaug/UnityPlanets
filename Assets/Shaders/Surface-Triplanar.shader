@@ -1,9 +1,6 @@
 ﻿Shader "Custom/Triplanar" {
 	Properties{
 		_Scale ("Scale", Float) = .5
-		_Scale2 ("Scale 2", Float) = .1
-		_ScaleBlend ("Scale Blend", Range(0, 1)) = .5
-		_BlendScale("Blend Scale", Float) = .5
 		_Color ("Color", Color) = (1,1,1,1)
 		[NoScaleOffset]
 		_MainTex ("Albedo (RGB) Smoothness (A)", 2D) = "white" {}
@@ -12,6 +9,21 @@
 		[Normal]
 		[NoScaleOffset]
 		_NormalTex ("Normal", 2D) = "bump" {}
+
+		[Space]
+		_Scale2 ("Scale 2", Float) = .1
+		_ScaleBlend ("Scale Blend", Range(0, 1)) = .5
+		_BlendScale("Blend Scale", Float) = .5
+		_Warp("Warp", Float) = .2
+		_WarpScale("Warp Scale", Float) = 1.0
+		[Toggle(TEXBLEND)] _TexBlend("Blend Separate Texture", Float) = 0
+		[NoScaleOffset]
+		_BlendTex ("Albedo (RGB) Smoothness (A)", 2D) = "white" {}
+		[NoScaleOffset]
+		[Normal]
+		_BlendTexNormal ("Normal", 2D) = "bump" {}
+		[NoScaleOffset]
+		_NoiseTexture ("rgba noise", 2D) = "black" {}
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -20,6 +32,7 @@
 		CGPROGRAM
 		#pragma surface surf Standard fullforwardshadows vertex:vert
 		#pragma target 5.0
+		#pragma multi_compile ___ TEXBLEND
 
 		float4 _Color;
 		float _Scale;
@@ -32,6 +45,11 @@
 		float _Smoothness;
 		float _Metallic;
 
+		float _Warp;
+		float _WarpScale;
+		sampler2D _BlendTex;
+		sampler2D _BlendTexNormal;
+
 		struct Input {
 			float2 uv_MainTex;
 			float3 norm;
@@ -41,12 +59,11 @@
 		float noise(float3 x) {
 			float3 p = floor(x);
 			float3 f = frac(x);
-			f = f*f*(3.0 - 2.0*f);
-
-			float2 uv = (p.xy + float2(37.0, 17.0) * p.z) + f.xy;
-			float4 coord = float4((uv + 0.5) / 256.0, 0, 0);
-			coord.y = 1.0 - (fmod(coord.y, 1.0));
-			float2 rg = tex2Dlod(_NoiseTexture, coord).yx;
+			f = f*f*(3.0-2.0*f);
+			float2 uv = (p.xy+float2(37.0,17.0)*p.z) + f.xy;
+			uv = (uv + .5) / 256.0;
+			uv.y *= -1.0;
+			float2 rg = tex2D(_NoiseTexture, uv).yx;
 			return lerp(rg.x, rg.y, f.z);
 		}
 
@@ -78,10 +95,20 @@
 
 			if (_ScaleBlend > 0){
 				float3 pos2 = IN.pos * worldScale * _Scale2;
-				float sblend = _ScaleBlend * (saturate(noise(pos * _BlendScale) * 4 - 1));
+				float w = 0;
+				if (_Warp > 0) w = noise(pos * _BlendScale * _WarpScale) * _Warp;
+				float sblend = _ScaleBlend * (saturate(noise(pos * _BlendScale + w) * 4 - 1));
 
-				c = c * (1.0 - sblend) + triplanar(_MainTex, blend, pos2) * sblend;
-				n = n * (1.0 - sblend) + triplanar(_NormalTex, blend, pos2) * sblend;
+				#ifdef TEXBLEND
+				sampler2D sc = _BlendTex;
+				sampler2D sn = _BlendTexNormal;
+				#else
+				sampler2D sc = _MainTex;
+				sampler2D sn = _NormalTex;
+				#endif
+
+				c = c * (1.0 - sblend) + triplanar(sc, blend, pos2) * sblend;
+				n = n * (1.0 - sblend) + triplanar(sn, blend, pos2) * sblend;
 			}
 
 			o.Albedo = c.rgb * _Color.rgb;

@@ -27,9 +27,8 @@ public class SSAA : MonoBehaviour {
             if (rt) {
                 cam.targetTexture = null;
                 rt.Release();
-                if (RenderTexture.active == rt)
-                    RenderTexture.active = null;
-                Destroy(rt);
+                if (RenderTexture.active == rt) RenderTexture.active = null;
+                DestroyImmediate(rt);
             }
 
             rt = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32) {

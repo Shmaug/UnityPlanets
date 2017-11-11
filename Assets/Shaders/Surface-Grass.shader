@@ -2,6 +2,7 @@
 	Properties{
 		[NoScaleOffset]
 		_MainTex("Texture", 2D) = "white" {}
+		_TextureCount("Texture Count", Int) = 1
 		_Color1("Color 1", Color) = (1,1,1,1)
 		_Color2("Color 2", Color) = (1,1,1,1)
 
@@ -217,6 +218,7 @@
 				out half4 outEmission : SV_Target3) {
 
 				float4 col = tex2D(_MainTex, i.tex0.xy) * lerp(_Color1, _Color2, i.tex0.w);
+				//col = float4(i.tex0.xy, 0, 1);
 				clip(col.a - _Cutoff);
 
 				UNITY_APPLY_DITHER_CROSSFADE(i.pos.xy);
