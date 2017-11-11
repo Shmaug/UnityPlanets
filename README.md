@@ -6,7 +6,7 @@ Full-scale procedural planet generator in Unity with lots of graphics tricks inc
 - Screen-space atmosphere as a post-process
 - Custom tree generator with animated leaves
 
-##Planned
+## Planned
 ------
 - VR support
 - Place trees on the surface, with billboarding in the distance
@@ -14,10 +14,10 @@ Full-scale procedural planet generator in Unity with lots of graphics tricks inc
 - Better (physically based) clouds
 - Better drag/atmosphere model
 
-##Screenshots
+## Screenshots
 ------
-[](https://i.imgur.com/UtdnsyH.png)
-[](https://i.imgur.com/S2tt9vB.png)
-[](https://i.imgur.com/k198C7x.png)
-[](https://i.imgur.com/FQZeYqE.png)
-[](https://i.imgur.com/axUi5wJ.png)
+[1]:(https://i.imgur.com/UtdnsyH.png)
+[2]:(https://i.imgur.com/S2tt9vB.png)
+[3]:(https://i.imgur.com/k198C7x.png)
+[4]:(https://i.imgur.com/FQZeYqE.png)
+[5]:(https://i.imgur.com/axUi5wJ.png)
