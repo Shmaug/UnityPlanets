@@ -16,8 +16,8 @@ Full-scale procedural planet generator in Unity with lots of graphics tricks inc
 
 ## Screenshots
 ------
-[1]:(https://i.imgur.com/UtdnsyH.png)
-[2]:(https://i.imgur.com/S2tt9vB.png)
-[3]:(https://i.imgur.com/k198C7x.png)
-[4]:(https://i.imgur.com/FQZeYqE.png)
-[5]:(https://i.imgur.com/axUi5wJ.png)
+![1](https://i.imgur.com/UtdnsyH.png "")
+![2](https://i.imgur.com/S2tt9vB.png "")
+![3](https://i.imgur.com/k198C7x.png "")
+![4](https://i.imgur.com/FQZeYqE.png "")
+![5](https://i.imgur.com/axUi5wJ.png "")
