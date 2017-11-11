@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 3b7cb9342b7f82b4899815e6c5ee5239
+timeCreated: 1507665413
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Cockpit
+    100004: fgear
+    100006: fgear_door.l
+    100008: fgear_door.r
+    100010: fgear_piston
+    100012: fgear_pistonbase
+    100014: rgear.l
+    100016: rgear.r
+    100018: rgear_door.l
+    100020: rgear_door.r
+    100022: rgear_piston.l
+    100024: rgear_piston.r
+    100026: rgear_pistonbase.l
+    100028: rgear_pistonbase.r
+    100030: Ship
+    100032: //RootNode
+    100034: Ship 1
+    100036: LaserGun
+    100038: Plane
+    100040: Base
+    100042: GunArmature
+    100044: Rotor
+    400000: Armature
+    400002: Cockpit
+    400004: fgear
+    400006: fgear_door.l
+    400008: fgear_door.r
+    400010: fgear_piston
+    400012: fgear_pistonbase
+    400014: rgear.l
+    400016: rgear.r
+    400018: rgear_door.l
+    400020: rgear_door.r
+    400022: rgear_piston.l
+    400024: rgear_piston.r
+    400026: rgear_pistonbase.l
+    400028: rgear_pistonbase.r
+    400030: Ship
+    400032: //RootNode
+    400034: Ship 1
+    400036: LaserGun
+    400038: Plane
+    400040: Base
+    400042: GunArmature
+    400044: Rotor
+    2300000: LaserGun
+    2300002: Plane
+    3300000: LaserGun
+    3300002: Plane
+    4300000: Ship
+    4300002: Plane
+    4300004: LaserGun
+    9500000: //RootNode
+    13700000: Ship
+    13700002: LaserGun
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
