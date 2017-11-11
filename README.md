@@ -17,8 +17,18 @@ Full-scale procedural planet generator in Unity with lots of graphics tricks inc
 
 ## Screenshots
 ------
+### Planet Surface
 ![1](https://i.imgur.com/UtdnsyH.png "")
 ![2](https://i.imgur.com/S2tt9vB.png "")
 ![3](https://i.imgur.com/k198C7x.png "")
 ![4](https://i.imgur.com/FQZeYqE.png "")
 ![5](https://i.imgur.com/axUi5wJ.png "")
+### Interior Lighting with Capsule Lights
+![6](https://i.imgur.com/MG1SvSs.png "")
+![7](https://i.imgur.com/ZRZzW6s.png, "")
+![8](https://i.imgur.com/v01NC9e.png, "")
+![9](https://i.imgur.com/CfUkubK.png, "")
+### Tree Generator
+![10](https://i.imgur.com/cVmAa8Z.png, "")
+![11](https://i.imgur.com/5FebkQm.png, "")
+![12](https://i.imgur.com/MTh12qB.png, "")
